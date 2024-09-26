@@ -1,5 +1,6 @@
 package org.choucair.tasks;
 
+import lombok.AllArgsConstructor;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -7,16 +8,22 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
+import org.choucair.models.Candidate;
+
+import java.util.List;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static org.choucair.userInterfaces.ScheduleInterviewPage.*;
 import static org.choucair.userInterfaces.ViewCandidatesPage.*;
 
+@AllArgsConstructor
 public class SearchCandidate implements Task {
 
-    public static SearchCandidate byName() {
+    private final List<Candidate> candidate;
 
-        return instrumented(SearchCandidate.class);
+    public static SearchCandidate byName(List<Candidate> candidate) {
+
+        return instrumented(SearchCandidate.class, candidate);
     }
 
     @Override
@@ -24,8 +31,11 @@ public class SearchCandidate implements Task {
 
         actor.attemptsTo(
 
-                Enter.theValue("Anderson").into(CANDIDATE_NAME_SEARCH),
-                WaitUntil.the(INTERVIEWER_OPTION, WebElementStateMatchers.containsText("Anderson"))
+                WaitUntil.the(CANDIDATE_NAME_SEARCH, WebElementStateMatchers.isVisible())
+                        .forNoMoreThan(10L)
+                        .seconds(),
+                Enter.theValue(candidate.get(0).getFirstName()).into(CANDIDATE_NAME_SEARCH),
+                WaitUntil.the(INTERVIEWER_OPTION, WebElementStateMatchers.containsText(candidate.get(0).getFirstName()))
                         .forNoMoreThan(10L)
                         .seconds(),
                 Click.on(INTERVIEWER_OPTION),

@@ -1,6 +1,7 @@
 package org.choucair.stepDefinitions;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.*;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -9,6 +10,9 @@ import org.choucair.models.Candidate;
 import org.choucair.questions.AnswerSuccessfulRecruitment;
 import org.choucair.tasks.*;
 import org.choucair.userInterfaces.LoginPage;
+
+import java.util.List;
+import java.util.Map;
 
 import static net.serenitybdd.screenplay.actors.OnStage.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -19,7 +23,27 @@ public class HireCandidateStepDefinitions {
     public void setStage() {
 
         setTheStage(new OnlineCast());
-        theActor("candidate");
+        theActor("Candidate");
+    }
+
+    @DataTableType
+    public Candidate candidateEntry(Map<String, String> entry) {
+
+        return new Candidate(
+                entry.get("username"),
+                entry.get("password"),
+                entry.get("firstName"),
+                entry.get("middleName"),
+                entry.get("lastName"),
+                entry.get("vacancy"),
+                entry.get("email"),
+                entry.get("phone"),
+                entry.get("cv"),
+                entry.get("keywords"),
+                entry.get("notes"),
+                entry.get("tittleInterview"),
+                entry.get("interviewer")
+        );
     }
 
     @Given("the recruiter is on the login page")
@@ -32,11 +56,11 @@ public class HireCandidateStepDefinitions {
     }
 
     @When("he logs in with valid credentials")
-    public void heLogsInWithValidCredentials() {
+    public void heLogsInWithValidCredentials(List<Candidate> candidate) {
 
         theActorInTheSpotlight().attemptsTo(
 
-                Login.withCredentials()
+                Login.withCredentials(candidate)
         );
     }
 
@@ -50,15 +74,7 @@ public class HireCandidateStepDefinitions {
     }
 
     @When("he adds a new candidate with valid details")
-    public void heAddsANewCandidateWithValidDetails() {
-
-        Candidate candidate = Candidate.builder()
-                .firstName("Anderson")
-                .middleName("Andrés")
-                .lastName("Alonso")
-                .email("alonso@gmail.com")
-                .phone("3023618215")
-                .build();
+    public void heAddsANewCandidateWithValidDetails(List<Candidate> candidate) {
 
         theActorInTheSpotlight().attemptsTo(
 
@@ -68,31 +84,31 @@ public class HireCandidateStepDefinitions {
     }
 
     @When("he finishes the complete the hiring process")
-    public void heFinishesTheCompleteTheHiringProcess() {
+    public void heFinishesTheCompleteTheHiringProcess(List<Candidate> candidate) {
 
         theActorInTheSpotlight().attemptsTo(
 
                 GoToStageNextStep.successOption(),
-                FillNotesCandidate.addNotes(),
+                FillNotesCandidate.addNotes(candidate),
                 GoToStageNextStep.successOption(),
-                FillScheduleInterview.addDataInterview(),
+                FillScheduleInterview.addDataInterview(candidate),
                 GoToStageNextStep.successOption(),
-                FillNotesCandidate.addNotes(),
+                FillNotesCandidate.addNotes(candidate),
                 GoToStageNextStep.successOfferJobOption(),
-                FillNotesCandidate.addNotes(),
+                FillNotesCandidate.addNotes(candidate),
                 GoToStageNextStep.successOption(),
-                FillNotesCandidate.addNotes()
+                FillNotesCandidate.addNotes(candidate)
         );
     }
 
     @Then("he should see the candidate as hired")
-    public void heShouldSeeTheCandidateAsHired() {
+    public void heShouldSeeTheCandidateAsHired(List<Candidate> candidate) {
 
         theActorInTheSpotlight().attemptsTo(
 
                 GoToRecruitment.recruitmentItemMenu(),
-                SearchCandidate.byName(),
-                Ensure.that("Hiring success", AnswerSuccessfulRecruitment.byValue()).isEqualTo(true)
+                SearchCandidate.byName(candidate),
+                Ensure.that("Hiring success", AnswerSuccessfulRecruitment.byValue(candidate)).isEqualTo(true)
         );
 
     }

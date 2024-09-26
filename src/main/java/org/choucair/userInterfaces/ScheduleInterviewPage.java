@@ -16,8 +16,8 @@ public class ScheduleInterviewPage extends PageObject {
             .located(By.cssSelector(".oxd-autocomplete-option:nth-of-type(1)"));
 
     public static final Target DATE_INPUT = Target.the("Date input")
-            .located(By.xpath("//input[@placeholder='yyyy-dd-mm']"));
+            .located(By.cssSelector(".oxd-date-input>input.oxd-input"));
 
     public static final Target TIME_INPUT = Target.the("Time input")
-            .located(By.xpath("//input[@placeholder='hh:mm']"));
+            .located(By.cssSelector(".oxd-time-input>input.oxd-input"));
 }
