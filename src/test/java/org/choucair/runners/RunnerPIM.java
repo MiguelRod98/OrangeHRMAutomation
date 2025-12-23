@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/create_employee_pim.feature",
         tags = "@PIM",
         glue = "org/choucair/stepDefinitions",
-        plugin = {"pretty", "json:target/cucumber-report.json", "html:target/cucumber-html-report", "junit:target/cucumber-junit.xml"},
+        plugin = {"pretty", "json:target/cucumber-report-pim.json", "html:target/cucumber-html-report-pim", "junit:target/cucumber-junit-pim.xml"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 

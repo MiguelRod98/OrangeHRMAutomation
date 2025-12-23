@@ -44,5 +44,5 @@ jobs:
       if: always()
       with:
         name: Test Results
-        path: target/cucumber-junit.xml
+        path: target/cucumber-junit-*.xml
         reporter: java-junit
