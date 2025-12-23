@@ -50,4 +50,14 @@ jobs:
       if: always()
       with:
         name: cucumber-reports
+        path: |
+          target/cucumber-report.json
+          target/cucumber-html-report/
+    
+    - name: Publish Test Results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Cucumber Tests
         path: target/cucumber-report.json
+        reporter: java-junit

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/hire_candidate.feature",
         tags = "@Hiring",
         glue = "org/choucair/stepDefinitions",
-        plugin = {"pretty", "json:target/cucumber-report.json"},
+        plugin = {"pretty", "json:target/cucumber-report.json", "html:target/cucumber-html-report"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 
