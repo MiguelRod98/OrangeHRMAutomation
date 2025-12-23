@@ -37,7 +37,7 @@ jobs:
         name: test-reports
         path: |
           target/site/serenity/
-          target/cucumber-html-report/
+          target/cucumber-html-report-*/
     
     - name: Publish Test Results
       uses: dorny/test-reporter@v1
