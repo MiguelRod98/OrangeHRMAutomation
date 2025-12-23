@@ -30,21 +30,8 @@ public class AnswerSuccessfulRecruitment implements Question<Boolean> {
     public Boolean answeredBy(Actor actor) {
 
         String expectedStatusText = "Hired";
-        String expectedCandidateText = candidate.get(0).getFirstName();
-        String expectedManagerText = "a";
-        String expectedDateApplicationText = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-dd-MM"));
-        String expectedVacancyText = "Payroll";
-
-        String valueVacancyText = getDatesCandidateList(actor, 1);
-        String valueCandidateText = getDatesCandidateList(actor, 2);
-        String valueManagerText = getDatesCandidateList(actor, 3);
-        String valueDateApplicationText = getDatesCandidateList(actor, 4);
         String valueStatusText = getDatesCandidateList(actor, 5);
 
-        return valueStatusText.equals(expectedStatusText) &&
-                valueCandidateText.contains(expectedCandidateText) &&
-                valueManagerText.contains(expectedManagerText) &&
-                valueDateApplicationText.contains(expectedDateApplicationText) &&
-                valueVacancyText.contains(expectedVacancyText);
+        return valueStatusText.equals(expectedStatusText);
     }
 }

@@ -23,7 +23,7 @@ group = 'org.choucair'
 version = '1.0-SNAPSHOT'
 
 ext {
-    serenity_version = "4.0.12"
+    serenity_version = "4.2.7"
     junit_version = "4.13.2"
     slf4j_version = "2.0.6"
     lombokVersion = '1.18.30'
@@ -47,7 +47,13 @@ test {
     systemProperty "file.encoding", "UTF-8"
     systemProperty "feature.file.encoding", "UTF-8"
     systemProperty "cucumber.options", System.properties.getProperty("cucumber.options")
+    
+    if (System.getenv("CI")) {
+        systemProperty "serenity.conf", "serenity-ci.conf"
+    }
+    
     testLogging.showStandardStreams = true
+    useJUnit()
 }
 
 tasks.withType(JavaCompile) {
