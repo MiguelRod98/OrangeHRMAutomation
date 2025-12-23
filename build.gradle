@@ -54,9 +54,6 @@ test {
     
     testLogging.showStandardStreams = true
     useJUnit()
-    
-    maxParallelForks = 2
-    forkEvery = 1
 }
 
 tasks.withType(JavaCompile) {
