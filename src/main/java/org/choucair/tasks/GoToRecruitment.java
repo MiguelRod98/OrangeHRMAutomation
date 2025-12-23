@@ -4,8 +4,11 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Scroll;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static org.choucair.userInterfaces.AddCandidatePage.FIRST_NAME_INPUT;
 import static org.choucair.userInterfaces.MenuPage.*;
 import static org.choucair.userInterfaces.ViewCandidatesPage.*;
 
@@ -20,7 +23,9 @@ public class GoToRecruitment implements Task {
     public <T extends Actor> void performAs(T actor) {
 
         actor.attemptsTo(
-
+                WaitUntil.the(RECRUITMENT_MENU_ITEM, WebElementStateMatchers.isVisible())
+                        .forNoMoreThan(30L)
+                        .seconds(),
                 Click.on(RECRUITMENT_MENU_ITEM),
                 Scroll.to(ADD_USER_BUTTON).andAlignToBottom()
         );
