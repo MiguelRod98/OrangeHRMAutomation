@@ -60,8 +60,6 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-gradle.startParameter.continueOnFailure = true
-
 defaultTasks 'clean', 'test', 'aggregate'
 
 test.finalizedBy('aggregate')
