@@ -1,42 +1,82 @@
+# ===== IDE =====
 # Eclipse
 .classpath
 .project
 .settings/
 
-# Intellij
+# IntelliJ IDEA
 .idea/
-.gradle/
 *.iml
 *.iws
 *.editorconfig
 
-# Gradle
-log/
-target/
-hooks/pre-push
+# Visual Studio Code
+.vscode/
 
-# Java
+# ===== BUILD TOOLS =====
+# Gradle
+.gradle/
 build/
-out/
+gradle-app.setting
+.gradletasknamecache
+!gradle-wrapper.jar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# ===== JAVA =====
 *.class
 *.jar
 *.war
 *.ear
+hs_err_pid*
+replay_pid*
 
-# Log file
+# ===== SERENITY BDD =====
+# Reportes generados
+target/site/serenity/
+
+# ===== LOGS =====
 *.log
-.scannerwork/report-task.txt
-.scannerwork/.sonar_lock
+log/
+logs/
+
+# ===== TESTING =====
+# Screenshots y evidencias temporales
+screenshots/
+test-output/
+
+# ===== SONARQUBE =====
 .scannerwork/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# ===== SISTEMA OPERATIVO =====
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-.gradle
-build/
-# Ignore Gradle GUI config
-gradle-app.setting
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-# Cache of project
-.gradletasknamecache
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ===== OTROS =====
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Configuraciones locales
+*.local
+.env
+.env.local
