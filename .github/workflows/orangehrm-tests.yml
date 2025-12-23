@@ -7,6 +7,11 @@ on:
     branches: [ main ]
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -53,6 +58,7 @@ jobs:
         path: |
           target/cucumber-report.json
           target/cucumber-html-report/
+          target/cucumber-junit.xml
     
     - name: Publish Test Results
       uses: dorny/test-reporter@v1
