@@ -29,7 +29,6 @@ jobs:
     
     - name: Run tests
       run: ./gradlew clean test -Dtest.single=RunnerAll aggregate
-      continue-on-error: true
     
     - name: Upload test reports
       uses: actions/upload-artifact@v4
@@ -47,4 +46,3 @@ jobs:
         name: Test Results
         path: target/cucumber-junit.xml
         reporter: java-junit
-        fail-on-error: false
