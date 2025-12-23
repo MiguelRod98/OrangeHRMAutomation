@@ -28,5 +28,4 @@
 
      Examples:
        | username | password | firstName | middleName | lastName | vacancy               | email             | phone      | cv                              | keywords | notes           | tittleInterview     | interviewer |
-       | Admin    | admin123 | Alex    | Andres     | Alvarez  | Payroll Administrator | alvarez@gmail.com | 3023654789 | src/test/resources/files/CV.txt | QA       | Notes candidate | OrangeHRM Interview | P           |
-       | Admin    | admin123 | Pablo    | Andres     | Alvarez  | Payroll Administrator | alvarez@gmail.com | 3023654789 | src/test/resources/files/CV.txt | QA       | Notes candidate | OrangeHRM Interview | P           |
+       | Admin    | admin123 | Alex      | Andres     | Alvarez  | Payroll Administrator | alvarez@gmail.com | 3023654789 | src/test/resources/files/CV.txt | QA       | Notes candidate | OrangeHRM Interview | P           |

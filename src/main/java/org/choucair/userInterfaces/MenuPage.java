@@ -8,4 +8,7 @@ public class MenuPage extends PageObject {
 
     public static final Target RECRUITMENT_MENU_ITEM = Target.the("Item menu Recruitment")
             .located(By.xpath("//span[normalize-space()='Recruitment']"));
+
+    public static final Target PIM_MENU_ITEM = Target.the("PIM menu item")
+            .located(By.xpath("//span[normalize-space()='PIM']"));
 }
