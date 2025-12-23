@@ -24,6 +24,11 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
     
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
+    
     - name: Make gradlew executable
       run: chmod +x ./gradlew
     
