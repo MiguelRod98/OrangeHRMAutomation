@@ -33,7 +33,7 @@ jobs:
       run: chmod +x ./gradlew
     
     - name: Run tests
-      run: ./gradlew clean test --continue aggregate
+      run: ./gradlew clean test -Dtest.single=ParallelRunner --continue aggregate
     
     - name: Upload test reports
       uses: actions/upload-artifact@v4
@@ -49,5 +49,5 @@ jobs:
       if: always()
       with:
         name: Test Results
-        path: target/cucumber-junit-*.xml
+        path: target/cucumber-junit-parallel.xml
         reporter: java-junit
