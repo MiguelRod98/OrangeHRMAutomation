@@ -29,16 +29,11 @@ jobs:
       with:
         chrome-version: stable
     
-    - name: Setup ChromeDriver
-      uses: nanasess/setup-chromedriver@v2
-      with:
-        chromedriver-version: 'latest'
-    
     - name: Make gradlew executable
       run: chmod +x ./gradlew
     
     - name: Run tests
-      run: ./gradlew clean test -Dtest.single=ParallelRunner --continue aggregate
+      run: ./gradlew clean test -Dtest.single=ParallelRunner aggregate
     
     - name: Upload test reports
       uses: actions/upload-artifact@v4
